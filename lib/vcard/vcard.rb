@@ -923,6 +923,9 @@ module Vcard
     end
 
     ## UID
+    def uid
+      value("UID")
+    end
 
     # The URL value, a Attachment::Uri. A wrapper around #value("URL").
     def url
