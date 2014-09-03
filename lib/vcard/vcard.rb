@@ -518,7 +518,7 @@ module Vcard
       "NAME"       => :decode_text,
       "NICKNAME"   => :decode_list_of_text,
       "NOTE"       => :decode_text,
-      "ORG"        => :decode_structured_text,
+      "ORG"        => :decode_text,
       "PHOTO"      => :decode_attachment,
       "PRODID"     => :decode_text,
       "PROFILE"    => :decode_text,

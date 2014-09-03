@@ -6,6 +6,7 @@
 require "date"
 require "open-uri"
 require "stringio"
+require "htmlentities"
 
 require "vcard/attachment"
 require "vcard/bnf"
@@ -177,14 +178,20 @@ module Vcard
   # just support it.
   def self.decode_text(v) # :nodoc:
     # FIXME - I think this should trim leading and trailing space
-    v.gsub(/\\(.)/) do
-      case $1
-      when "n", "N"
-        "\n"
-      else
-        $1
+    text = v.gsub(/\\(.)/) do
+        case $1
+        when "n", "N"
+          "\n"
+        else
+          $1
+        end
       end
-    end
+    decode_html_entities(text)
+  end
+
+  def self.decode_html_entities(text)
+    @htmlentities ||= HTMLEntities.new
+    @htmlentities.decode(text)
   end
 
   def self.encode_text(v) #:nodoc:
